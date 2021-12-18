@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7CF5575F276CB68D00DF9DD0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5575E276CB68D00DF9DD0 /* main.swift */; };
+		7C223F1E276DEA8000BBCF0E /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 7C223F1D276DEA8000BBCF0E /* ArgumentParser */; };
+		7C989CFE276DFC5A000DFEA6 /* LocationKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7C989CFD276DFC5A000DFEA6 /* LocationKit */; };
+		7CF55772276CB80800DF9DD0 /* smap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF55771276CB80800DF9DD0 /* smap.swift */; };
+		7CF55776276CC71400DF9DD0 /* ImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF55775276CC71400DF9DD0 /* ImageMetadata.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		7CF55759276CB68D00DF9DD0 /* CopyFiles */ = {
+		7CF55768276CB79E00DF9DD0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,15 +26,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7CF5575B276CB68D00DF9DD0 /* SMAP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SMAP; sourceTree = BUILT_PRODUCTS_DIR; };
-		7CF5575E276CB68D00DF9DD0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		7CF55765276CB6BB00DF9DD0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7CF5576A276CB79E00DF9DD0 /* smap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = smap; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CF55771276CB80800DF9DD0 /* smap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smap.swift; sourceTree = SOURCE_ROOT; };
+		7CF55775276CC71400DF9DD0 /* ImageMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMetadata.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7CF55758276CB68D00DF9DD0 /* Frameworks */ = {
+		7CF55767276CB79E00DF9DD0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C989CFE276DFC5A000DFEA6 /* LocationKit in Frameworks */,
+				7C223F1E276DEA8000BBCF0E /* ArgumentParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,7 +48,8 @@
 		7CF55752276CB68D00DF9DD0 = {
 			isa = PBXGroup;
 			children = (
-				7CF5575D276CB68D00DF9DD0 /* SMAP */,
+				7CF55765276CB6BB00DF9DD0 /* README.md */,
+				7CF5576B276CB79E00DF9DD0 /* smap */,
 				7CF5575C276CB68D00DF9DD0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,37 +57,42 @@
 		7CF5575C276CB68D00DF9DD0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7CF5575B276CB68D00DF9DD0 /* SMAP */,
+				7CF5576A276CB79E00DF9DD0 /* smap */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7CF5575D276CB68D00DF9DD0 /* SMAP */ = {
+		7CF5576B276CB79E00DF9DD0 /* smap */ = {
 			isa = PBXGroup;
 			children = (
-				7CF5575E276CB68D00DF9DD0 /* main.swift */,
+				7CF55771276CB80800DF9DD0 /* smap.swift */,
+				7CF55775276CC71400DF9DD0 /* ImageMetadata.swift */,
 			);
-			path = SMAP;
+			path = smap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7CF5575A276CB68D00DF9DD0 /* SMAP */ = {
+		7CF55769276CB79E00DF9DD0 /* smap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7CF55762276CB68D00DF9DD0 /* Build configuration list for PBXNativeTarget "SMAP" */;
+			buildConfigurationList = 7CF5576E276CB79E00DF9DD0 /* Build configuration list for PBXNativeTarget "smap" */;
 			buildPhases = (
-				7CF55757276CB68D00DF9DD0 /* Sources */,
-				7CF55758276CB68D00DF9DD0 /* Frameworks */,
-				7CF55759276CB68D00DF9DD0 /* CopyFiles */,
+				7CF55766276CB79E00DF9DD0 /* Sources */,
+				7CF55767276CB79E00DF9DD0 /* Frameworks */,
+				7CF55768276CB79E00DF9DD0 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SMAP;
-			productName = SMAP;
-			productReference = 7CF5575B276CB68D00DF9DD0 /* SMAP */;
+			name = smap;
+			packageProductDependencies = (
+				7C223F1D276DEA8000BBCF0E /* ArgumentParser */,
+				7C989CFD276DFC5A000DFEA6 /* LocationKit */,
+			);
+			productName = smap;
+			productReference = 7CF5576A276CB79E00DF9DD0 /* smap */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -92,7 +105,7 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					7CF5575A276CB68D00DF9DD0 = {
+					7CF55769276CB79E00DF9DD0 = {
 						CreatedOnToolsVersion = 13.2;
 					};
 				};
@@ -106,21 +119,26 @@
 				Base,
 			);
 			mainGroup = 7CF55752276CB68D00DF9DD0;
+			packageReferences = (
+				7C223F1C276DEA8000BBCF0E /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+				7C989CFC276DFC5A000DFEA6 /* XCRemoteSwiftPackageReference "LocationKit" */,
+			);
 			productRefGroup = 7CF5575C276CB68D00DF9DD0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7CF5575A276CB68D00DF9DD0 /* SMAP */,
+				7CF55769276CB79E00DF9DD0 /* smap */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7CF55757276CB68D00DF9DD0 /* Sources */ = {
+		7CF55766276CB79E00DF9DD0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CF5575F276CB68D00DF9DD0 /* main.swift in Sources */,
+				7CF55776276CC71400DF9DD0 /* ImageMetadata.swift in Sources */,
+				7CF55772276CB80800DF9DD0 /* smap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +260,7 @@
 			};
 			name = Release;
 		};
-		7CF55763276CB68D00DF9DD0 /* Debug */ = {
+		7CF5576F276CB79E00DF9DD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -253,7 +271,7 @@
 			};
 			name = Debug;
 		};
-		7CF55764276CB68D00DF9DD0 /* Release */ = {
+		7CF55770276CB79E00DF9DD0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -276,16 +294,48 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7CF55762276CB68D00DF9DD0 /* Build configuration list for PBXNativeTarget "SMAP" */ = {
+		7CF5576E276CB79E00DF9DD0 /* Build configuration list for PBXNativeTarget "smap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7CF55763276CB68D00DF9DD0 /* Debug */,
-				7CF55764276CB68D00DF9DD0 /* Release */,
+				7CF5576F276CB79E00DF9DD0 /* Debug */,
+				7CF55770276CB79E00DF9DD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7C223F1C276DEA8000BBCF0E /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		7C989CFC276DFC5A000DFEA6 /* XCRemoteSwiftPackageReference "LocationKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Fahrenberg/LocationKit.git";
+			requirement = {
+				branch = release;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7C223F1D276DEA8000BBCF0E /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C223F1C276DEA8000BBCF0E /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+		7C989CFD276DFC5A000DFEA6 /* LocationKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C989CFC276DFC5A000DFEA6 /* XCRemoteSwiftPackageReference "LocationKit" */;
+			productName = LocationKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7CF55753276CB68D00DF9DD0 /* Project object */;
 }
