@@ -53,6 +53,7 @@ public struct ImageMetadata {
     
     var mapURL: URL? {
         guard let mapCoordinate = self.coordinate else {
+            print("Invalid or missing coordinate (GPS-Tag)")
             return nil
         }
         var swissTopoComponent = URLComponents(string: "https://map.geo.admin.ch/")

@@ -39,7 +39,6 @@ struct smap: ParsableCommand {
         }
 
         guard let mapLink = ImageMetadata(data: data)?.mapURL else {
-            print("Cannot create link from data")
             throw smapError.CannotCreateLink
             
         }
