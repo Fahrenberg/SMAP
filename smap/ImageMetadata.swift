@@ -9,70 +9,67 @@ import Foundation
 import LocationKit
 import MapKit
 
+extension CLLocationCoordinate2D {
+    var swissTopoCoordinateString: String {
+        self.googleAPICoordinateString
+    }
+}
+
 public struct ImageMetadata {
-    typealias PropertiesDict = [CFString:Any]
+    typealias MetaData = [CFString:Any]
+    typealias GeoPosition = String
     
-    var properties : PropertiesDict
+    var metaData : MetaData
     
-    init?(url: URL) {
-        guard let data = try? Data(contentsOf: url) else {
-                return nil
-        }
-        self.init(data: data)
+    init(url: URL) throws {
+        let data = try Data(contentsOf: url)
+        try self.init(data: data)
     }
     
     
-    init?(data: Data) {
+    init(data: Data) throws {
         let options = [kCGImageSourceShouldCache: kCFBooleanFalse]
-        if let imageSource = CGImageSourceCreateWithData(data as CFData, options as CFDictionary),
-           let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as? PropertiesDict {
-            self.properties = imageProperties
-        } else {
-            return nil
-        }
+        guard let imageSource = CGImageSourceCreateWithData(data as CFData, options as CFDictionary),
+              let imageMetaData = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as? MetaData
+        else { throw MetaDataError.NoMetaData }
+        self.metaData = imageMetaData
     }
     
-    var coordinate: CLLocationCoordinate2D? {
-        guard let gpsMetadata = self.properties[kCGImagePropertyGPSDictionary] as? PropertiesDict else {
-            return nil
-        }
-        guard let lat = gpsMetadata[kCGImagePropertyGPSLatitude] as? Double,
-              let latRef = gpsMetadata[kCGImagePropertyGPSLatitudeRef] as? String,
-              let lng = gpsMetadata[kCGImagePropertyGPSLongitude] as? Double,
-              let lngRef = gpsMetadata[kCGImagePropertyGPSLongitudeRef] as? String else {
-            print("FotoProperties - coordinate \(Properties.noCoordinate)")
-            return nil
-        }
-        let wgs84 =  "\(lat)\(CoordinateAccents.degreeAccent.rawValue)\(latRef) \(lng)\(CoordinateAccents.degreeAccent.rawValue)\(lngRef)"
-        guard let parsedCoordinate = wgs84.parseToCoordinate2D else {
-            print("FotoProperties - parsedCoordinate == nil: \(Properties.noCoordinate)")
-            return nil
-        }
-        return parsedCoordinate
-    }
-    
-    var mapURL: URL? {
-        guard let mapCoordinate = self.coordinate else {
-            print("Invalid or missing coordinate (GPS-Tag)")
-            return nil
-        }
-        var swissTopoComponent = URLComponents(string: "https://map.geo.admin.ch/")
-        let coordinateString = "\(mapCoordinate.latitude),\(mapCoordinate.longitude)"
-        swissTopoComponent?.queryItems = [URLQueryItem(name: "swisssearch", value: coordinateString)]
+    var coordinate: CLLocationCoordinate2D { get throws {
+        guard let gpsMetaData = self.metaData[kCGImagePropertyGPSDictionary] as? MetaData
+        else { throw MetaDataError.NoGPSTag }
         
-        return swissTopoComponent?.url
-    }
+        guard let lat = gpsMetaData[kCGImagePropertyGPSLatitude] as? CLLocationDegrees,
+              let latRef = gpsMetaData[kCGImagePropertyGPSLatitudeRef] as? GeoPosition,
+              let lng = gpsMetaData[kCGImagePropertyGPSLongitude] as? CLLocationDegrees,
+              let lngRef = gpsMetaData[kCGImagePropertyGPSLongitudeRef] as? GeoPosition
+        else { throw MetaDataError.noCoordinate }
+        
+        let wgs84 =  "\(lat)\(CoordinateAccents.degreeAccent.rawValue)\(latRef) \(lng)\(CoordinateAccents.degreeAccent.rawValue)\(lngRef)"
+        guard let parsedCoordinate = wgs84.parseToCoordinate2D
+        else { throw MetaDataError.noCoordinate }
+        return parsedCoordinate
+    } }
+    
+    var mapURL: URL { get throws {
+        let mapCoordinate =  try self.coordinate
+        var swissTopoComponent = URLComponents(string: "https://map.geo.admin.ch/")
+        let coordinateString = mapCoordinate.swissTopoCoordinateString
+        swissTopoComponent?.queryItems = [URLQueryItem(name: "swisssearch", value: coordinateString)]
+        guard let url = swissTopoComponent?.url else {
+            throw MetaDataError.InvalidURL
+        }
+        return url
+    } }
     
 }
 
-/// Error Codes for Property Parser
-enum Properties: String {
-    case noTIFF = "No TIFF"
-    case noCamera = "No Camera"
-    case noModel = "No Model"
-    case noExif = "No Exif"
-    case noDate = "No DateTimeOriginal"
-    case noDateOffset = "No OffsetTimeOriginal"
-    case noCoordinate = "No Coordinate"
-    case noGPSAltitude = "No Stored GPS-Altitude"
+/// Error Codes for Meta Data Parser
+
+enum MetaDataError: Error {
+    case NoExifTag
+    case NoGPSTag
+    case InvalidURL
+    case NoMetaData
+    case noCoordinate
 }

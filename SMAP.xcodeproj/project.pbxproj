@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C223F1E276DEA8000BBCF0E /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 7C223F1D276DEA8000BBCF0E /* ArgumentParser */; };
-		7C989CFE276DFC5A000DFEA6 /* LocationKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7C989CFD276DFC5A000DFEA6 /* LocationKit */; };
+		7C2DA519277C7D76006F3516 /* LocationKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7C2DA518277C7D76006F3516 /* LocationKit */; };
 		7CF55772276CB80800DF9DD0 /* smap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF55771276CB80800DF9DD0 /* smap.swift */; };
 		7CF55776276CC71400DF9DD0 /* ImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF55775276CC71400DF9DD0 /* ImageMetadata.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +26,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7C2DA51A277CBD52006F3516 /* smap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = smap.entitlements; sourceTree = "<group>"; };
 		7CF55765276CB6BB00DF9DD0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7CF5576A276CB79E00DF9DD0 /* smap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = smap; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF55771276CB80800DF9DD0 /* smap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smap.swift; sourceTree = SOURCE_ROOT; };
@@ -37,7 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C989CFE276DFC5A000DFEA6 /* LocationKit in Frameworks */,
+				7C2DA519277C7D76006F3516 /* LocationKit in Frameworks */,
 				7C223F1E276DEA8000BBCF0E /* ArgumentParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,6 +66,7 @@
 		7CF5576B276CB79E00DF9DD0 /* smap */ = {
 			isa = PBXGroup;
 			children = (
+				7C2DA51A277CBD52006F3516 /* smap.entitlements */,
 				7CF55771276CB80800DF9DD0 /* smap.swift */,
 				7CF55775276CC71400DF9DD0 /* ImageMetadata.swift */,
 			);
@@ -89,7 +91,7 @@
 			name = smap;
 			packageProductDependencies = (
 				7C223F1D276DEA8000BBCF0E /* ArgumentParser */,
-				7C989CFD276DFC5A000DFEA6 /* LocationKit */,
+				7C2DA518277C7D76006F3516 /* LocationKit */,
 			);
 			productName = smap;
 			productReference = 7CF5576A276CB79E00DF9DD0 /* smap */;
@@ -121,7 +123,7 @@
 			mainGroup = 7CF55752276CB68D00DF9DD0;
 			packageReferences = (
 				7C223F1C276DEA8000BBCF0E /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
-				7C989CFC276DFC5A000DFEA6 /* XCRemoteSwiftPackageReference "LocationKit" */,
+				7C2DA517277C7D76006F3516 /* XCRemoteSwiftPackageReference "LocationKit" */,
 			);
 			productRefGroup = 7CF5575C276CB68D00DF9DD0 /* Products */;
 			projectDirPath = "";
@@ -263,6 +265,8 @@
 		7CF5576F276CB79E00DF9DD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = smap/smap.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U2FX3W9AAW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -274,6 +278,8 @@
 		7CF55770276CB79E00DF9DD0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = smap/smap.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U2FX3W9AAW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -314,12 +320,12 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		7C989CFC276DFC5A000DFEA6 /* XCRemoteSwiftPackageReference "LocationKit" */ = {
+		7C2DA517277C7D76006F3516 /* XCRemoteSwiftPackageReference "LocationKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Fahrenberg/LocationKit.git";
 			requirement = {
-				branch = release;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -330,9 +336,9 @@
 			package = 7C223F1C276DEA8000BBCF0E /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
 			productName = ArgumentParser;
 		};
-		7C989CFD276DFC5A000DFEA6 /* LocationKit */ = {
+		7C2DA518277C7D76006F3516 /* LocationKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7C989CFC276DFC5A000DFEA6 /* XCRemoteSwiftPackageReference "LocationKit" */;
+			package = 7C2DA517277C7D76006F3516 /* XCRemoteSwiftPackageReference "LocationKit" */;
 			productName = LocationKit;
 		};
 /* End XCSwiftPackageProductDependency section */
